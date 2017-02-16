@@ -2,19 +2,19 @@
 
 namespace ejen\payment;
 
-use yii\base\InvalidConfigException;
+use ejen\payment\okpay\Payment; 
 
 class Okpay extends \yii\base\Component
 {
-    public $wallet;
+    public $baseUrl = 'https://checkout.okpay.com/';
 
-    public function init()
+    public $receiver;
+    public $currency;
+    public $ipn;
+
+    public function createPayment($params)
     {
-        parent::init();
-
-        if (!$this->wallet)
-        {
-            throw new InvalidConfigException("`wallet` is required");
-        }
+        $params['component'] = $this;
+        return new Payment($params);
     }
 }
