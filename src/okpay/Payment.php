@@ -12,6 +12,7 @@ class Payment extends \yii\base\Model
     public $currency;
     public $invoice;
     public $ipn;
+    public $paymentMethod;
 
     public $items = [];
 
@@ -32,6 +33,10 @@ class Payment extends \yii\base\Model
             'ok_receiver' => $this->receiver ? $this->receiver : $this->component->receiver,
             'currency' => $this->currency ? $this->currency : $this->component->currency,
         ];
+
+        if ($this->paymentMethod) {
+            $params['ok_direct_payment'] = $this->paymentMethod;
+        }
 
         foreach($this->items as $i => $item)
         {

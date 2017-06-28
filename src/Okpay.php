@@ -2,7 +2,7 @@
 
 namespace ejen\payment;
 
-use ejen\payment\okpay\Payment; 
+use ejen\payment\okpay\Payment;
 
 class Okpay extends \yii\base\Component
 {
@@ -11,6 +11,7 @@ class Okpay extends \yii\base\Component
     public $receiver;
     public $currency;
     public $ipn;
+    public $paymentMethod;
 
     public function createPayment($params)
     {
